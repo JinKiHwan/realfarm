@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real farm</title>
+    <!-- META -->
+    <meta property="og:title" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="" />
+    <meta name="description" content="" />
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="./resources/images/favicon.png" />
+
+    <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Paytone+One&family=Sigmar+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./resources/css/style.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- SCRIPT -->
+    <script defer src="https://www.youtube.com/iframe_api"></script>
+    <script defer src="./resources/js/jquery.min.js"></script>
+    <script defer src="./resources/js/swiper.min.js"></script>
+    <script defer src="./resources/js/common.js"></script>
+    <script defer src="./resources/js/tool-1.0.min.js"></script>
+    <script defer src="./resources/js/translation.js"></script>
+    <script defer src="./resources/js/aos.js"></script>
+    <script>
+      //언어 선택 변경 후 translte
+      window.onload = function () {
+        let language = sessionStorage['language'];
+        let isSelectLang = document.getElementById('isSelectLang'); //header select text
+        let isSelectFx = document.getElementById('isSelectFx'); //footer select text
+
+        if (language) {
+          // Set the header text based on selected language
+          let headerLangText;
+          if (language === 'tc') {
+            headerLangText = '繁體中文';
+          } else if (language === 'ja') {
+            headerLangText = '日本語';
+          } else if (language === 'ar') {
+            headerLangText = 'العربية';
+          } else {
+            headerLangText = 'ENGLISH'; // Default
+          }
+          document.getElementById('isSelectLang').innerText = headerLangText;
+
+          // Set the footer select box to the selected language
+          let footerSelect = document.getElementById('isSelectFx');
+          for (let i = 0; i < footerSelect.options.length; i++) {
+            if (footerSelect.options[i].value === language) {
+              footerSelect.selectedIndex = i;
+              break;
+            }
+          }
+
+          // Call the translation.js function (go() function)
+          opt.language = language;
+          go();
+        }
+      };
+      //언어 선택 섹션 저장 및 리로드
+      function applyLanguage(language) {
+        sessionStorage['language'] = language;
+        location.reload();
+      }
+      //언어 선택 셀렉트박스
+      function selectFx(selectElement) {
+        let language = selectElement.value;
+        applyLanguage(language);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__content">
+          <h1 class="header__logo"><a href="/"></a></h1>
+
+          <div class="header__util">
+            <ul>
+              <li id="lang" class="font-trans">
+                <a href="javascript:void(0)">
+                  <span id="isSelectLang">ENGLISH</span>
+                  <i><img src="./resources/images/header/lang-arr.png" alt="arrow" /></i>
+                </a>
+                <ul class="depth2">
+                  <li class="font-en">
+                    <a href="javascript:void(0);" onclick="applyLanguage('en')">ENGLISH</a>
+                  </li>
+                  <li class="font-tc">
+                    <a href="javascript:void(0);" onclick="applyLanguage('tc')">繁體中文</a>
+                  </li>
+                  <li class="font-ja">
+                    <a href="javascript:void(0);" onclick="applyLanguage('ja')">日本語</a>
+                  </li>
+                  <li class="font-ar">
+                    <a href="javascript:void(0);" onclick="applyLanguage('ar')">العربية</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <div class="playnow">
+              <a href="javascript:void(0)" id="isFontClass" onclick="alert('Coming Soon!')" data-translate="playnow-btn" data-translate-type="html">PLAY NOW</a>
+              <figure>
+                <img src="./resources/images/header/play-btn.png" alt="" />
+              </figure>
+            </div>
+          </div>
+
+          <div class="header__m-menu" id="mMenu">
+            <a href="javascript:void(0)"></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 모바일 메뉴 -->
+    <section class="m-menu">
+      <div class="m-menu__wrap">
+        <h2 data-aos="zoom-in-up" data-aos-duration="600" data-aos-delay="300">
+          <img src="./resources/images/main-visual/visual-logo.png" alt="Real Farm" />
+        </h2>
+
+        <ul class="download" data-aos="fade" data-aos-duration="600" data-aos-delay="800">
+          <li>
+            <a href="https://play.google.com/store/apps/details?hl=en_en&id=com.neogames.realfarmworld" target="_blank" data-translate="main-googleplay-btn" data-translate-type="html">
+              <img src="./resources/images/main-visual/google-btn.png" alt="" />
+            </a>
+          </li>
+          <li>
+            <a href="https://apps.apple.com/app/real-farm/id1215120676?l=en" target="_blank" data-translate="main-appstore-btn" data-translate-type="html">
+              <img src="./resources/images/main-visual/appstore-btn.png" alt="App Store" />
+            </a>
+          </li>
+
+          <li class="font-trans">
+            <a href="javascript:void(0)" onclick="alert('Coming Soon!')" data-translate="main-join-txt" data-translate-type="html"> Join <span>&</span> Get Rewarded </a>
+          </li>
+        </ul>
+
+        <ul class="lang" id="mLang">
+          <li><a href="#!" onclick="applyLanguage('en')">English</a></li>
+          <li class="font-tc"><a href="#!" onclick="applyLanguage('tc')">繁體中文</a></li>
+          <li class="font-ja"><a href="#!" onclick="applyLanguage('ja')">日本語</a></li>
+          <li class="font-ar"><a href="#!" onclick="applyLanguage('ar')">العربية</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MAIN -->
+    <article class="main" id="main">
+      <!-- 메인비주얼 -->
+      <section class="main-visual">
+        <div class="inner">
+          <div class="main-visual__content">
+            <h2 data-aos="zoom-in-up" data-aos-duration="600" data-aos-delay="300">
+              <img src="./resources/images/main-visual/visual-logo.png" alt="Real Farm" />
+            </h2>
+            <!-- <p data-aos="zoom-in-down" data-aos-duration="600" data-aos-delay="300" data-translate="main-sub-txt" data-translate-type="html">A Farm in your Palm, Real Farm</p> -->
+
+            <figure data-aos="zoom-in-down" data-aos-duration="600" data-aos-delay="300" data-translate="main-slogan" data-translate-type="html">
+              <picture>
+                <source media="(max-width: 1024px)" srcset="" />
+                <source srcset="./resources/images/review/title-en.png" />
+                <img src="./resources/images/main-visual/slogan-en.png" alt="" />
+              </picture>
+            </figure>
+
+            <ul class="btn" data-aos="fade" data-aos-duration="600" data-aos-delay="800">
+              <li>
+                <a href="https://play.google.com/store/apps/details?hl=en_en&id=com.neogames.realfarmworld" target="_blank" data-translate="main-googleplay-btn" data-translate-type="html">
+                  <img src="./resources/images/main-visual/google-btn.png" alt="" />
+                </a>
+              </li>
+              <li>
+                <a href="https://apps.apple.com/app/real-farm/id1215120676?l=en" target="_blank" data-translate="main-appstore-btn" data-translate-type="html">
+                  <img src="./resources/images/main-visual/appstore-btn.png" alt="App Store" />
+                </a>
+              </li>
+
+              <li class="font-trans">
+                <a href="javascript:void(0)" onclick="alert('Coming Soon!')" data-translate="main-join-txt" data-translate-type="html"> Join <span>&</span> Get Rewarded </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 영상 -->
+      <section class="movie">
+        <div class="inner">
+          <article class="movie__area">
+            <div class="movie__area__box">
+              <figure>
+                <img src="./resources/images/movie/video-sample.png" alt="" />
+              </figure>
+              <a href="javascript:void(0)" class="play-btn" id="popupPlay"></a>
+            </div>
+          </article>
+        </div>
+        <article class="swiper movieSw" dir="ltr">
+          <ul class="swiper-wrapper" id="imageList">
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot01.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot02.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot03.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot04.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot05.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot06.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot07.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot08.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot09.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot10.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot11.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot12.png" alt="" />
+              </figure>
+            </li>
+            <li class="swiper-slide">
+              <figure>
+                <img src="./resources/images/movie/screenshot13.png" alt="" />
+              </figure>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- 영상 팝업 -->
+      <section class="movie-popup">
+        <div class="wrap">
+          <article class="popup">
+            <a href="javascript:void(0)" id="popupClose">
+              <img src="./resources/images/movie/close-btn.png" alt="닫기 버튼" />
+            </a>
+            <figure>
+              <!-- 임시 영상 -->
+              <iframe src="https://www.youtube.com/embed/M2c4-qHjOsk" title="레알팜 소개영상 Realfarm Promotion Video (Korean)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <!-- 게임 스토리 -->
+      <section class="story">
+        <div class="wrap">
+          <ul class="font-trans">
+            <li>
+              <figure>
+                <picture>
+                  <source srcset="./resources/images/story/img01.webp" type="image/webp" />
+                  <img src="./resources/images/story/img01.png" alt="" />
+                </picture>
+              </figure>
+              <div class="story-txt" data-aos="fade-up">
+                <h2 data-translate="story-sub1-title" data-translate-type="html">Experience Real at Real Farm!</h2>
+                <dl class="font-trans">
+                  <dt data-translate="story-sub1-subtitle" data-translate-type="html">A maestro farmer</dt>
+                  <dd data-translate="story-sub1-subtxt" data-translate-type="html">
+                    born in Real Farm who has spent
+                    <br />
+                    his entire life on farm land
+                    <br />
+                    born in Real Farm who has spent
+                  </dd>
+                </dl>
+              </div>
+            </li>
+            <li>
+              <figure>
+                <source srcset="./resources/images/story/img02.webp" type="image/webp" />
+                <img src="./resources/images/story/img02.png" alt="" />
+              </figure>
+              <div class="story-txt second" data-aos="fade-up">
+                <h2 data-translate="story-sub2-title" data-translate-type="html">REAL PRICE!</h2>
+                <dl class="font-trans">
+                  <dt data-translate="story-sub2-subtitle" data-translate-type="html">A maestro farmer</dt>
+                  <dd data-translate="story-sub2-subtxt" data-translate-type="html">
+                    born in Real Farm who has spent
+                    <br />
+                    his entire life on farm land
+                    <br />
+                    born in Real Farm who has spent
+                  </dd>
+                </dl>
+              </div>
+            </li>
+            <li>
+              <figure>
+                <source srcset="./resources/images/story/img03.webp" type="image/webp" />
+                <img src="./resources/images/story/img03.png" alt="" />
+              </figure>
+              <div class="story-txt third" data-aos="fade-up">
+                <h2 data-translate="story-sub3-title" data-translate-type="html">REAL PRICE!</h2>
+                <dl class="font-trans">
+                  <dt data-translate="story-sub3-subtitle" data-translate-type="html">A maestro farmer</dt>
+                  <dd data-translate="story-sub3-subtxt" data-translate-type="html">
+                    born in Real Farm who has spent
+                    <br />
+                    his entire life on farm land
+                    <br />
+                    born in Real Farm who has spent
+                  </dd>
+                </dl>
+              </div>
+            </li>
+            <li>
+              <figure>
+                <source srcset="./resources/images/story/img04.webp" type="image/webp" />
+                <img src="./resources/images/story/img04.png" alt="" />
+              </figure>
+              <div class="story-txt fourth" data-aos="fade-up">
+                <h2 data-translate="story-sub4-title" data-translate-type="html">REAL PRICE!</h2>
+                <dl class="font-trans">
+                  <dt data-translate="story-sub4-subtitle" data-translate-type="html">A maestro farmer</dt>
+                  <dd data-translate="story-sub4-subtxt" data-translate-type="html">
+                    born in Real Farm who has spent
+                    <br />
+                    his entire life on farm land
+                    <br />
+                    born in Real Farm who has spent
+                  </dd>
+                </dl>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 캐릭터 소개 -->
+      <section class="character font-trans">
+        <div class="inner" id="changeImg">
+          <div class="character__box">
+            <div class="character__title"><h2 data-translate="character-title" data-translate-type="html">Game Character</h2></div>
+            <div class="character__intro">
+              <article class="charSw swiper">
+                <ul class="swiper-wrapper">
+                  <li class="swiper-slide">
+                    <figure>
+                      <picture>
+                        <source media="(max-width: 1024px)" srcset="./resources/images/character/Mr.sam-m.png" />
+                        <source srcset="./resources/images/character/Mr.sam.png" />
+                        <img src="./resources/images/character/Mr.sam.png" alt="" />
+                      </picture>
+                    </figure>
+                    <div class="character__info">
+                      <dl>
+                        <dt class="name" data-translate="character-1-name" data-translate-type="html">Mr. SAM</dt>
+                        <dd class="info font-trans" data-translate="character-1-info" data-translate-type="html">
+                          A maestro farmer
+                          <br />
+                          born in Real Farm who has spent
+                          <br />
+                          his entire life on farm land
+                        </dd>
+                      </dl>
+                    </div>
+                  </li>
+                  <li class="swiper-slide">
+                    <figure>
+                      <picture>
+                        <source media="(max-width: 1024px)" srcset="./resources/images/character/Mr.lee-m.png" />
+                        <source srcset="./resources/images/character/Mr.lee.png" />
+                        <img src="./resources/images/character/Mr.lee.png" alt="" />
+                      </picture>
+                    </figure>
+                    <div class="character__info">
+                      <dl>
+                        <dt class="name" data-translate="character-2-name" data-translate-type="html">Mr. 123</dt>
+                        <dd class="info font-trans" data-translate="character-2-info" data-translate-type="html">
+                          A maestro farmer
+                          <br />
+                          born in Real Farm who has spent
+                          <br />
+                          his entire life on farm land
+                        </dd>
+                      </dl>
+                    </div>
+                  </li>
+                  <li class="swiper-slide">
+                    <figure>
+                      <picture>
+                        <source media="(max-width: 1024px)" srcset="./resources/images/character/Ms.boone-m.png" />
+                        <source srcset="./resources/images/character/Ms.boone.png" />
+                        <img src="./resources/images/character/Ms.boone.png" alt="" />
+                      </picture>
+                    </figure>
+                    <div class="character__info">
+                      <dl>
+                        <dt class="name" data-translate="character-3-name" data-translate-type="html">Mr. 789</dt>
+                        <dd class="info font-trans" data-translate="character-3-info" data-translate-type="html">
+                          A maestro farmer
+                          <br />
+                          born in Real Farm who has spent
+                          <br />
+                          his entire life on farm land
+                        </dd>
+                      </dl>
+                    </div>
+                  </li>
+                  <li class="swiper-slide">
+                    <figure>
+                      <picture>
+                        <source media="(max-width: 1024px)" srcset="./resources/images/character/girl_next_doors-m.png" />
+                        <source srcset="./resources/images/character/girl_next_doors.png" />
+                        <img src="./resources/images/character/girl_next_doors.png" alt="" />
+                      </picture>
+                    </figure>
+                    <div class="character__info">
+                      <dl>
+                        <dt class="name" data-translate="character-4-name" data-translate-type="html">Mr. 789</dt>
+                        <dd class="info font-trans" data-translate="character-4-info" data-translate-type="html">
+                          A maestro farmer
+                          <br />
+                          born in Real Farm who has spent
+                          <br />
+                          his entire life on farm land
+                        </dd>
+                      </dl>
+                    </div>
+                  </li>
+                  <li class="swiper-slide">
+                    <figure>
+                      <picture>
+                        <source media="(max-width: 1024px)" srcset="./resources/images/character/lucky-m.png" />
+                        <source srcset="./resources/images/character/lucky.png" />
+                        <img src="./resources/images/character/lucky.png" alt="" />
+                      </picture>
+                    </figure>
+                    <div class="character__info">
+                      <dl>
+                        <dt class="name" data-translate="character-5-name" data-translate-type="html">Mr. 789</dt>
+                        <dd class="info font-trans" data-translate="character-5-info" data-translate-type="html">
+                          A maestro farmer
+                          <br />
+                          born in Real Farm who has spent
+                          <br />
+                          his entire life on farm land
+                        </dd>
+                      </dl>
+                    </div>
+                  </li>
+                </ul>
+
+                <a href="javascript:void(0)" class="char-prev"></a>
+                <a href="javascript:void(0)" class="char-next"></a>
+                <div class="character__pagi"></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 리뷰 -->
+      <section class="review" dir="ltr">
+        <div class="inner">
+          <article class="review__wrap">
+            <div class="review__tit" data-translate="review-title" data-translate-type="html" data-aos="fade-up" data-aos-duration="600">
+              <picture>
+                <source media="(max-width: 1024px)" srcset="./resources/images/review/title-en-m.png" />
+                <source srcset="./resources/images/review/title-en.png" />
+                <img src="./resources/images/review/title-en.png" alt="review" />
+              </picture>
+            </div>
+
+            <div class="swiper reviewSw">
+              <ul class="swiper-wrapper" data-aos="fade" data-aos-duration="600">
+                <!-- 1 -->
+                <li class="swiper-slide photo-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/taiwan.png" alt="대만국기" /></span>
+                    <h6 class="user-name font-ja">王**</h6>
+                  </div>
+                  <div class="review-cont">
+                    <figure>
+                      <img src="./resources/images/review/photoreview03.png" alt="" />
+                    </figure>
+                    <div class="review-txt">
+                      <p class="font-tc">
+                        第七.八.九.十.十一.十二.
+                        <br />
+                        十三.十四.十五箱
+                        <br />
+                        好久沒更新po文領60R了
+                        <br />
+                        感謝每位來我家的你們
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- 2 -->
+                <li class="swiper-slide photo-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/taiwan.png" alt="대만국기" /></span>
+                    <h6 class="user-name">Be** L*u</h6>
+                  </div>
+                  <div class="review-cont">
+                    <figure>
+                      <img src="./resources/images/review/photoreview04.png" alt="" />
+                    </figure>
+                    <div class="review-txt font-tc">
+                      <p>
+                        No.8 感謝所有鄰居們的幫忙 ^^…
+                        <br />
+                        #7月_第二波_真實商品_0718
+                        <br />
+                        #家常必備_蔬菜禮盒
+                        <br />
+                        #BeBe520
+                        <br />
+                        #60R
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- 3 -->
+                <li class="swiper-slide photo-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/japan.png" alt="일본국기" /></span>
+                    <h6 class="user-name">@mat*****_y</h6>
+                  </div>
+                  <div class="review-cont">
+                    <figure>
+                      <img src="./resources/images/review/photoreview01.png" alt="" />
+                    </figure>
+                    <div class="review-txt">
+                      <p class="font-ja">
+                        リアルクーポンと交換したお肉が届きました
+                        <br />
+                        いつもありがとうございます
+                        <br />
+                        BBQ行きにしたいけど今は
+                        <br />
+                        暑くてダメだ 冷凍庫で
+                        <br />
+                        待機してもらお
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- 4 -->
+                <li class="swiper-slide photo-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/japan.png" alt="일본국기" /></span>
+                    <h6 class="user-name">@RF_sa*****ko</h6>
+                  </div>
+                  <div class="review-cont">
+                    <figure>
+                      <img src="./resources/images/review/photoreview02.png" alt="" />
+                    </figure>
+                    <div class="review-txt">
+                      <p class="font-ja">
+                        本日リアルクーポンで交換した
+                        <br />
+                        #吉澤藤兵衛
+                        <br />
+                        さんのコシヒカリが届きました
+                        <br />
+                        お米は5回目
+                        <br />
+                        今回もありがとうございますッ(*´˘`*)♥
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="swiper-slide txt-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/usa.png" alt="미국국기" /></span>
+                    <h6 class="user-name">Spiri*****cer</h6>
+                  </div>
+                  <div class="review-cont">
+                    <div class="review-txt">
+                      <p class="font-kr">
+                        I love this game.
+                        <br />
+                        The time management and having to actually plan and
+                        <br />
+                        pay attention to the crops is nice and engaging.
+                        <br />
+                        In short, this is my favorite farm game
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="swiper-slide txt-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/usa.png" alt="미국국기" /></span>
+                    <h6 class="user-name">Joh* Gem****X</h6>
+                  </div>
+                  <div class="review-cont">
+                    <div class="review-txt">
+                      <p class="font-kr">
+                        Love this game for sure,
+                        <br />
+                        easy to progress and not needed to
+                        <br />
+                        waste much money and efforts
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="swiper-slide txt-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/usa.png" alt="미국국기" /></span>
+                    <h6 class="user-name">Kit** Kat ****er</h6>
+                  </div>
+                  <div class="review-cont">
+                    <div class="review-txt">
+                      <p class="font-kr">
+                        The customization from your farm, your character, etc.
+                        <br />
+                        I love the story so far. I finally got lucky I'm happy.
+                        <br />
+                        Also enjoyed the character in the game
+                        <br />
+                        my favorite is Mrs. Boone and Mr. Sam.
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="swiper-slide txt-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/taiwan.png" alt="대만국기" /></span>
+                    <h6 class="user-name font-tc">油*</h6>
+                  </div>
+                  <div class="review-cont">
+                    <div class="review-txt">
+                      <p class="font-tc">
+                        第一次寫評論，
+                        <br />
+                        本來是為了可以拿到真的菜才玩的，
+                        <br />
+                        沒想到會被裡面的故事感動到鼻酸。
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="swiper-slide txt-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/taiwan.png" alt="대만국기" /></span>
+                    <h6 class="user-name font-tc">匿名****3</h6>
+                  </div>
+                  <div class="review-cont">
+                    <div class="review-txt">
+                      <p class="font-tc">
+                        很有真實感的遊戲，
+                        <br />
+                        作物會隨時間有高低價之分
+                        <br />
+                        也有任務可以解，
+                        <br />
+                        才玩一下子就愛不釋手了
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="swiper-slide txt-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/japan.png" alt="일본국기" /></span>
+                    <h6 class="user-name font-ja">岡**一</h6>
+                  </div>
+                  <div class="review-cont">
+                    <div class="review-txt">
+                      <p class="font-ja">
+                        肥料から種まき収穫まで忠実に再現されており、
+                        <br />
+                        販売に関しては、時期に応じて売値が変動します。
+                        <br />
+                        楽しくて眠れない日もしばしば
+                        <br />
+                        よかったらやってみてください。
+                        <br />
+                        楽しいですよ。
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="swiper-slide txt-review">
+                  <div class="review-id">
+                    <span><img src="./resources/images/review/japan.png" alt="일본국기" /></span>
+                    <h6 class="user-name font-ja">西**紀</h6>
+                  </div>
+                  <div class="review-cont">
+                    <div class="review-txt">
+                      <p class="font-ja">
+                        ストーリーに合った丁寧な教え方で
+                        <br />
+                        どのように進めていけばいいか教えてくれる。
+                        <br />
+                        体力回復剤もふんだんにくれるので
+                        <br />
+                        少なくともレベル14までは
+                        <br />
+                        進行で困ったことはない
+                        <br />
+                        久々にハマりそう。
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <a href="#!" class="review-btn review-prev" id="reviewPrev"></a>
+              <a href="#!" class="review-btn review-next" id="reviewNext"></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- join -->
+      <section class="join font-trans">
+        <div class="inner">
+          <div class="join__paper" data-aos="fade-right" data-aos-duration="600" data-aos-delay="300">
+            <h2 data-translate="join-title" data-translate-type="html">Celebrity Farmer</h2>
+            <dl>
+              <dt data-translate="join-sub-title" data-translate-type="html">Be one of our Celebrity Farmer!</dt>
+              <dd data-translate="join-sub-txt" data-translate-type="html" class="font-trans">
+                If you have save date on upir sustem from the Splatoon 2 game,
+                <br />
+                you’ll fet some neat-o bounses to help you hit the turf running.
+                <br />
+                If you have save date on upir sustem from the Splatoon 2 game,
+                <br />
+                you’ll fet some neat-o bounses to help you hit the turf running.
+              </dd>
+            </dl>
+
+            <div class="join__btn">
+              <a href="javascript:void(0)" onclick="alert('Coming Soon!')"><b data-translate="join-btn-txt" data-translate-type="html">JOIN!</b></a>
+            </div>
+          </div>
+
+          <figure class="join__char" data-aos="fade-left" data-aos-duration="600" data-aos-delay="300">
+            <img src="./resources/images/join/character.png" alt="" />
+          </figure>
+        </div>
+      </section>
+    </article>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__inner">
+          <div class="left">
+            <h3>
+              <img src="./resources/images/footer/logo.png" alt="Real farm" />
+            </h3>
+            <ul>
+              <li>
+                <a href="https://play.google.com/store/apps/details?hl=en_en&id=com.neogames.realfarmworld" target="_blank" data-translate="footer-googleplay-btn" data-translate-type="html">
+                  <img src="./resources/images/footer/google-btn.png" alt="구글 다운로드" />
+                </a>
+              </li>
+              <li>
+                <a href="https://apps.apple.com/app/real-farm/id1215120676?l=en" target="_blank" data-translate="footer-appstore-btn" data-translate-type="html">
+                  <img src="./resources/images/footer/other-btn.png" alt="다운로드" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="right">
+            <ul class="sns" data-translate="footer-sns" data-translate-type="html">
+              <li>
+                <a href="javascript:void(0)">
+                  <img src="./resources/images/footer/twitter.png" alt="twitter" />
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <img src="./resources/images/footer/discord.png" alt="discord" />
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" target="_blank">
+                  <img src="./resources/images/footer/facebook.png" alt="facebook" />
+                </a>
+              </li>
+            </ul>
+
+            <select id="isSelectFx" onchange="selectFx(this)">
+              <option value="en">English</option>
+              <option value="tc">繁體中文</option>
+              <option value="ja">日本語</option>
+              <option value="ar" class="arab">العربية</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <ul>
+          <li><a href="https://www.realfarmw.com/terms-of-service" data-translate="footer-terms-txt" data-translate-type="html" target="_blank">이용약관</a></li>
+          <li><a href="https://www.realfarmw.com/privacy-policy" data-translate="footer-policy-txt" data-translate-type="html" target="_blank">개인정보처리방침</a></li>
+        </ul>
+        <p class="copy" data-translate="footer-copy-txt" data-translate-type="html">Copyright © NEOGAMES. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <div class="gotop">
+      <a href="#main"></a>
+    </div>
+  </body>
+</html>
