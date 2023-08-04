@@ -1,0 +1,317 @@
+@use '../helpers/' as *;
+
+.review {
+  width: 100%;
+  aspect-ratio: 1920/1100;
+  padding: 0 rem(120px);
+
+  @include custom(1200px) {
+    padding: 0 rem(80px);
+  }
+
+  @include mobile() {
+    aspect-ratio: 1024/1973;
+    padding: 0;
+  }
+
+  .inner {
+    width: 70%;
+    margin: 0 auto;
+
+    @include custom(1600px) {
+      width: 72%;
+    }
+
+    @include mobile() {
+      width: 95%;
+      align-items: flex-start;
+      padding-top: rem(30px);
+    }
+  }
+  &__wrap {
+    width: 100%;
+    height: 70%;
+    margin-top: 0;
+
+    @include custom(1320px) {
+      margin-top: rem(50px);
+    }
+    @include custom(1280px) {
+      margin-top: 0;
+    }
+    @include mobile() {
+      margin-top: rem(50px);
+    }
+  }
+  &__tit {
+    width: 77%;
+    margin: rem(40px) auto;
+
+    @include desktop() {
+      margin-bottom: rem(10px);
+    }
+
+    @include mobile() {
+      width: 80%;
+      margin-top: rem(30px);
+    }
+
+    @include mobile-mini {
+      margin-top: rem(80px);
+    }
+
+    img {
+      width: 100%;
+      object-fit: contain;
+      max-height: rem(110px);
+      @include mobile() {
+        max-height: 100%;
+      }
+    }
+  }
+
+  .reviewSw {
+    width: 100%;
+    aspect-ratio: 49/25;
+    padding: rem(100px) rem(120px);
+    background: url('#{$path-image}/review/review-paper.png') no-repeat center center/contain;
+    position: relative;
+
+    @include custom(1600px) {
+      padding: rem(50px) rem(70px) rem(70px);
+    }
+
+    @include custom(1300px) {
+      padding: rem(30px) rem(60px);
+    }
+
+    @include mobile() {
+      aspect-ratio: 980/1300;
+      background-image: url('#{$path-image}/review/review-paper-m.png');
+      background-size: 100% 100%;
+      padding-bottom: rem(100px);
+    }
+
+    .swiper-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      .swiper-slide {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%) !important;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        opacity: 0 !important;
+        transition: 0.5s !important;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+
+        @include mobile() {
+          justify-content: center;
+        }
+
+        &.swiper-slide-active {
+          opacity: 1 !important;
+          pointer-events: auto;
+        }
+
+        .review-id {
+          display: flex;
+          align-items: center;
+          margin-bottom: rem(15px);
+
+          @include mobile() {
+            justify-content: center;
+          }
+
+          span {
+            margin-right: rem(25px);
+          }
+          h6 {
+            font-size: rem(35px);
+            color: #512b13;
+          }
+        }
+
+        .review-cont {
+          width: 100%;
+          max-height: calc(100% - rem(100px));
+          display: flex;
+          align-items: center;
+          padding: rem(50px);
+          background-size: 100% 100%;
+          background-position: left center;
+
+          @include custom(1400px) {
+            padding: rem(30px) !important;
+          }
+
+          figure {
+            height: 90%;
+          }
+
+          .review-txt {
+            height: 100%;
+            color: #6b6967;
+            font-size: rem(26px);
+            line-height: 1.5;
+            font-weight: 600;
+            flex-shrink: 1;
+            overflow-y: auto;
+            @include flex();
+
+            p {
+              flex-shrink: 1;
+              color: #4f360e;
+              line-height: 1.1;
+              display: inline-block;
+
+              @include custom(1130px) {
+                width: 100%;
+              }
+
+              @include mobile() {
+                text-align: center;
+                font-size: rem(33px);
+              }
+
+              &.font-tc {
+                font-weight: 600;
+              }
+            }
+
+            /* 전체 스크롤바 스타일 */
+            &::-webkit-scrollbar {
+              width: 2px; /* 스크롤바의 너비 */
+            }
+
+            /* 스크롤바의 트랙 스타일 (스크롤바의 배경) */
+            &::-webkit-scrollbar-track {
+              background-color: #f1f1f1;
+            }
+
+            /* 스크롤바의 색조 스타일 (스크롤바의 바탕) */
+            &::-webkit-scrollbar-thumb {
+              background-color: #7a2900;
+              border-radius: 5px; /* 스크롤바의 둥글기 */
+            }
+
+            /* 스크롤바가 활성화될 때의 색조 스타일 */
+            &::-webkit-scrollbar-thumb:hover {
+              background-color: #555;
+            }
+
+            /* 스크롤바의 코너 (스크롤바의 모서리) 스타일 */
+            &::-webkit-scrollbar-corner {
+              background-color: #f1f1f1;
+            }
+          }
+        }
+
+        &.photo-review {
+          @include mobile-mini() {
+            height: 95%;
+          }
+          .review-cont {
+            width: 100%;
+            aspect-ratio: 980/350;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background-size: 100% 100%;
+            background-position: left center;
+            background-image: url('#{$path-image}/review/review-slide-paper2.png');
+
+            @include mobile() {
+              background-image: url('#{$path-image}/review/review-slide-paper2-m.png');
+              background-position: left center;
+              flex-direction: column;
+            }
+
+            figure {
+              margin-right: rem(50px);
+
+              @include mobile() {
+                width: 100%;
+                height: 50%;
+                margin-right: 0;
+              }
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+            .review-txt {
+              width: auto;
+
+              @include mobile() {
+                aspect-ratio: 3/4;
+                width: 100%;
+                height: 50%;
+              }
+              p {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        &.txt-review {
+          width: 80% !important;
+
+          @include custom(1300px) {
+            width: 90% !important;
+          }
+
+          .review-cont {
+            aspect-ratio: 980/450;
+            background: url('#{$path-image}/review/review-slide-paper.png') no-repeat center center / 100% 100%;
+            justify-content: center;
+
+            @include mobile() {
+              aspect-ratio: 760/850;
+              background-image: url('#{$path-image}/review/review-slide-paper-m.png');
+            }
+
+            .review-txt {
+              width: 100%;
+              @include flex();
+              p {
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .review-btn {
+      width: rem(70px);
+      height: rem(70px);
+      position: absolute;
+      z-index: 1;
+      background: url('#{$path-image}/review/prev-arr.png') no-repeat center;
+      @include custom(1280px) {
+        width: rem(50px);
+        height: rem(50px);
+        background-size: contain;
+      }
+
+      &.review-prev {
+        left: rem(15px);
+        top: 50%;
+      }
+      &.review-next {
+        right: rem(15px);
+        top: 50%;
+        background-image: url('#{$path-image}/review/next-arr.png');
+      }
+    }
+  }
+}

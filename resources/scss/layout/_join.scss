@@ -1,0 +1,250 @@
+@use '../helpers/' as *;
+
+.join {
+  width: 100%;
+  aspect-ratio: 1920/900;
+
+  @include mobile() {
+    aspect-ratio: 1024/1324;
+  }
+  .inner {
+    width: calc(100% - 20px);
+    max-width: 1280px;
+    margin: 0 auto;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+
+    @include mobile() {
+      justify-content: center;
+    }
+  }
+
+  &__paper {
+    padding: rem(80px);
+    background: url('#{$path-image}/join/paper-bg.png') no-repeat center center/ contain;
+    text-align: center;
+    width: 100%;
+    max-width: 880px;
+    aspect-ratio: 880/550;
+    position: relative;
+    margin-left: rem(50px);
+
+    @include mobile() {
+      margin-left: 0;
+      margin-right: 0 !important;
+      background-image: url('#{$path-image}/join/paper-bg-m.png');
+      aspect-ratio: 902/865;
+      background-size: 100% 100%;
+      @include flex();
+      flex-direction: column;
+      padding: rem(80px) rem(100px);
+    }
+
+    @include custom(650px) {
+      aspect-ratio: 902/1005;
+      padding: rem(80px);
+    }
+
+    @include custom(480px) {
+      aspect-ratio: 902/1105;
+    }
+    @include mobile-mini() {
+      background-size: 100% 100%;
+      aspect-ratio: 902/905;
+    }
+
+    @include custom(390px) {
+      aspect-ratio: 902/995;
+    }
+
+    h2 {
+      font-size: rem(66px);
+      width: 100%;
+      color: #f4edd8;
+      text-shadow: 3px 3px 0 rgba($color: #000000, $alpha: 0.2);
+      margin-bottom: rem(25px);
+
+      @include mobile() {
+        font-size: rem(100px);
+      }
+      @include custom(650px) {
+        font-size: rem(90px);
+      }
+    }
+    dl {
+      font-family: 'Noto Sans KR', sans-serif;
+      width: 100%;
+      dt {
+        font-size: rem(28px);
+        color: #1c5600;
+        font-weight: 700;
+        letter-spacing: -1px;
+        margin-bottom: rem(45px);
+        position: relative;
+        display: inline-block;
+
+        @include mobile() {
+          font-size: rem(37px);
+        }
+        @include mobile-mini() {
+          width: 100%;
+        }
+
+        &::before {
+          content: '';
+          display: block;
+          width: calc(100% + rem(70px));
+          height: calc(100% + rem(15px));
+          background: url('#{$path-image}/join/yellow-bg.png') no-repeat;
+          position: absolute;
+          z-index: -1;
+          left: calc(50% - rem(15px));
+          top: rem(-9px);
+          transform: translateX(-50%);
+
+          @include mobile-mini() {
+            width: calc(100% + rem(40px));
+            left: calc(50% - rem(5px));
+            top: rem(-3px);
+            background-size: 100% 100%;
+          }
+        }
+      }
+      dd {
+        font-size: rem(23px);
+        font-weight: 700;
+        line-height: 1.5;
+        color: #fff;
+
+        @include mobile() {
+          font-size: rem(30px);
+        }
+
+        br {
+          @include mobile() {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    left: 50%;
+    bottom: rem(0);
+    transform: translateX(-50%);
+    width: 100%;
+
+    max-width: 750px;
+    aspect-ratio: 25/4;
+    font-size: rem(45px);
+    @include flex();
+    text-align: center;
+    color: #fff;
+    background: url('#{$path-image}/join/join-bg.png') no-repeat center center/ contain;
+    margin-top: rem(50px);
+    padding-bottom: rem(15px);
+
+    @include mobile() {
+      aspect-ratio: 539/115;
+      max-width: 70%;
+      background-size: 100% 100%;
+    }
+
+    @include mobile-mini() {
+      bottom: rem(-20px);
+    }
+
+    a {
+      @include flex();
+      font-size: rem(40px);
+      color: #fff;
+      width: rem(260px);
+      height: rem(100px);
+    }
+
+    @include mobile-mini() {
+      padding: rem(20px) 0;
+    }
+  }
+
+  &__char {
+    position: absolute;
+    z-index: 1;
+    right: rem(120px);
+    bottom: rem(-90px);
+    width: rem(420px);
+    height: calc(100% - rem(50px));
+
+    @include mobile() {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+/* 중국어 */
+.tc {
+  .join {
+    &__paper {
+      h2 {
+        @include mobile-mini() {
+          font-size: rem(70px);
+        }
+      }
+    }
+  }
+}
+
+/* 일본어 */
+.ja {
+  .join {
+    &__paper {
+      h2 {
+        @include mobile-mini() {
+          font-size: rem(65px);
+        }
+      }
+      dl {
+        dt {
+          &::before {
+            @include mobile-mini() {
+              height: calc(100% + rem(30px));
+              top: rem(-7px);
+            }
+          }
+        }
+        dd {
+          br {
+            @include mobile() {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 아랍어 */
+.ar {
+  .join {
+    &__paper {
+      margin-left: 0;
+      margin-right: rem(50px);
+    }
+    &__char {
+      right: auto;
+      left: 0;
+      transform: rotateY(180deg) !important;
+      bottom: rem(-90px);
+    }
+  }
+}

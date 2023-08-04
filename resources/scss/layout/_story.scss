@@ -1,0 +1,311 @@
+@use '../helpers/' as *;
+
+.story {
+  width: 100%;
+  aspect-ratio: 1920/2800;
+  overflow: hidden;
+  padding-top: rem(100px);
+  @include flex();
+
+  @include mobile() {
+    aspect-ratio: 1024/5040;
+  }
+
+  .wrap {
+    max-width: 1520px;
+    width: 100%;
+    height: calc(100% - rem(100px));
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mobile() {
+      align-items: flex-start;
+    }
+    ul {
+      width: calc(100% - 20px);
+      margin: 0 auto;
+      height: 100%;
+      max-height: rem(2500px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @include desktop() {
+        width: calc(100% - 60px);
+        max-height: 100%;
+        height: 100%;
+      }
+
+      @include mobile() {
+        justify-content: space-around;
+      }
+
+      li {
+        @include flex();
+        position: relative;
+        width: 100%;
+        z-index: 1;
+
+        @include mobile() {
+          flex-direction: column;
+          width: 85vw;
+          margin: 0 auto rem(50px);
+        }
+        &::before {
+          content: '';
+          width: 90%;
+          height: 100%;
+          display: block;
+          position: absolute;
+          z-index: -1;
+          left: rem(40px);
+          bottom: rem(-270px);
+          transform: rotate(15deg);
+          background: url('#{$path-image}/story/rope01.png') no-repeat top center;
+          background-size: 100% 100%;
+          @include mobile() {
+            display: none;
+          }
+        }
+
+        &:nth-child(even) {
+          &::before {
+            left: rem(80px);
+            bottom: rem(-250px);
+            background-image: url('#{$path-image}/story/rope02.png');
+            transform: rotate(-15deg);
+          }
+          figure {
+            order: 2;
+
+            @include mobile() {
+              order: 1;
+            }
+            &:hover {
+              transform: rotate(-10deg);
+            }
+          }
+          .story-txt {
+            order: 1;
+            margin-left: 0;
+            margin-right: rem(150px);
+
+            @include mobile() {
+              order: 2;
+              margin: 0;
+            }
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+          &::before {
+            display: none;
+          }
+        }
+
+        figure {
+          width: 48%;
+          transition: all 0.5s;
+          transform-origin: top center;
+          position: relative;
+          z-index: 2;
+          @include mobile() {
+            width: 100%;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+          &:hover {
+            transform: rotate(10deg);
+          }
+        }
+        .story-txt {
+          width: calc((100% - 48%) - rem(150px));
+          margin-left: rem(150px);
+          position: relative;
+          z-index: 1;
+
+          @include mobile() {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            margin-top: rem(100px) !important;
+          }
+
+          @include mobile-mini() {
+            margin-top: rem(30px) !important;
+          }
+
+          &::before {
+            content: '';
+            width: rem(630px);
+            height: rem(305px);
+            display: block;
+            background: url('#{$path-image}/story/text-bg01.png') no-repeat center center / contain;
+            position: absolute;
+            z-index: -1;
+            left: rem(-100px);
+            top: rem(-50px);
+
+            @include custom(1650px) {
+              left: rem(-100px);
+              top: rem(-30px);
+            }
+
+            @include mobile() {
+              width: 100%;
+              height: 100%;
+              left: 50% !important;
+              top: rem(-100px) !important;
+              transform: translateX(-50%) !important;
+            }
+
+            @include mobile-mini() {
+              opacity: 0.8;
+            }
+          }
+
+          &.second {
+            &::before {
+              background-image: url('#{$path-image}/story/text-bg02.png');
+              left: rem(-30px);
+              top: rem(-50px);
+
+              @include mobile() {
+              }
+            }
+          }
+          &.third {
+            &::before {
+              background-image: url('#{$path-image}/story/text-bg03.png');
+              left: rem(-30px);
+              top: rem(-50px);
+            }
+          }
+          &.fourth {
+            &::before {
+              background-image: url('#{$path-image}/story/text-bg04.png');
+              left: rem(-30px);
+              top: rem(-40px);
+
+              @include mobile-mini() {
+                top: 0 !important;
+              }
+            }
+          }
+
+          h2 {
+            font-size: rem(65px);
+            color: #532709;
+            letter-spacing: -1px;
+            margin-bottom: rem(20px);
+
+            @include custom(1650px) {
+              font-size: rem(67px);
+              margin-bottom: rem(15px);
+            }
+
+            @include custom(1100px) {
+              font-size: rem(50px);
+            }
+
+            @include mobile() {
+              font-size: rem(88px);
+            }
+
+            @include mobile-mini() {
+              font-size: rem(78px);
+            }
+          }
+          dl {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #4a4a4a;
+            dt {
+              margin-bottom: rem(35px);
+              font-size: rem(32px);
+              font-weight: 900;
+              letter-spacing: -1px;
+              color: #532709;
+
+              /* 삭제를 희망함 */
+              display: none;
+              @include custom(1650px) {
+                margin-bottom: rem(25px);
+              }
+            }
+            dd {
+              font-size: rem(25px);
+              font-weight: 900;
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 일본어 */
+body {
+  &.ja {
+    .story {
+      .wrap {
+        ul {
+          li {
+            .story-txt {
+              dl {
+                dd {
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 아랍어 */
+body {
+  &.ar {
+    .story {
+      .wrap {
+        ul {
+          li {
+            &::before {
+              transform: rotateY(180deg) rotate(15deg) !important;
+            }
+
+            figure {
+              &:hover {
+                transform: rotate(-10deg);
+              }
+            }
+
+            .story-txt {
+              margin: 0;
+            }
+
+            &:nth-child(even) {
+              &::before {
+                transform: rotateY(180deg) rotate(-15deg) !important;
+              }
+              figure {
+                &:hover {
+                  transform: rotate(10deg);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

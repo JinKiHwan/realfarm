@@ -1,0 +1,403 @@
+@use '../helpers/' as *;
+
+.character {
+  width: 100%;
+  aspect-ratio: 1920/1000;
+
+  @include mobile() {
+    aspect-ratio: 1024/1900;
+    overflow-x: hidden;
+  }
+
+  .inner {
+    align-items: flex-start;
+    background-image: url('#{$path-image}/character/character-bg00.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    transition: background-image 0.3s;
+    @include custom(1650px) {
+      background-position: 0 rem(100px);
+    }
+
+    @include mobile() {
+      background-image: none !important;
+    }
+
+    &.zero {
+      background-image: url('#{$path-image}/character/character-bg00.png');
+    }
+
+    &.first {
+      background-image: url('#{$path-image}/character/character-bg01.png');
+    }
+
+    &.second {
+      background-image: url('#{$path-image}/character/character-bg02.png');
+    }
+
+    &.third {
+      background-image: url('#{$path-image}/character/character-bg03.png');
+    }
+
+    &.fourth {
+      background-image: url('#{$path-image}/character/character-bg04.png');
+    }
+  }
+
+  &__box {
+    height: 100%;
+    @include mobile() {
+      width: 100%;
+    }
+  }
+
+  &__title {
+    width: rem(700px);
+    height: rem(200px);
+    background: url('#{$path-image}/character/character-tit.png') no-repeat center center / contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: rem(20px);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+
+    /* 삭제 요망 */
+    opacity: 0;
+    pointer-events: none;
+
+    @include custom(1500px) {
+      width: rem(600px);
+      height: rem(150px);
+    }
+
+    h2 {
+      font-size: rem(55px);
+      padding-top: rem(15px);
+      color: #fff2e9;
+      position: relative;
+      z-index: 1;
+
+      @include custom(1500px) {
+        font-size: rem(45px);
+      }
+
+      &::before {
+        content: attr(data-content);
+        z-index: -1;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: rem(3px);
+        top: rem(3px);
+        color: #b77c5b;
+        text-shadow: 2px 2px 3px rgba($color: #000000, $alpha: 0.2);
+      }
+    }
+  }
+
+  &__intro {
+    width: rem(1002px);
+    aspect-ratio: 1000/655;
+    background-image: url('#{$path-image}/character/character-intro-bg3.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    transform: translate(0, rem(-35px));
+    position: relative;
+    z-index: 0;
+
+    @include custom(1600px) {
+      width: rem(952px);
+      transform: translate(0, rem(-35px));
+    }
+    @include custom(1500px) {
+      width: rem(852px);
+      aspect-ratio: 1000/605;
+      background-size: cover;
+    }
+    @include custom(1280px) {
+      width: rem(752px);
+    }
+
+    @include custom(1130px) {
+      width: rem(702px);
+    }
+
+    @include mobile() {
+      width: 85%;
+      max-width: rem(1300px);
+      margin: 0 auto;
+      aspect-ratio: 888/1500;
+      background-image: url('#{$path-image}/character/character-intro-bg-m3.webp');
+    }
+
+    .charSw {
+      position: relative;
+
+      .swiper-wrapper {
+        width: 100%;
+        height: 100%;
+        .swiper-slide {
+          width: 100%;
+          position: absolute;
+          left: 0;
+          top: rem(120px);
+          display: flex;
+          opacity: 0 !important;
+          transition: 0.5s;
+          pointer-events: none;
+
+          @include mobile() {
+            top: rem(0);
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+          }
+
+          figure {
+            transform-origin: center top;
+            transition: transform 0.3s;
+            width: 47%;
+
+            @include desktop() {
+              width: 42%;
+            }
+
+            @include mobile() {
+              width: 67%;
+              margin: 0 auto;
+              transform: translateX(rem(20px));
+            }
+
+            @include mobile-mini() {
+              margin-top: rem(100px);
+            }
+
+            img {
+              margin: 0 auto;
+              @include mobile() {
+                width: 100%;
+              }
+            }
+          }
+
+          &:hover {
+            figure {
+              animation: jinja 5s infinite ease-in-out;
+              @include mobile() {
+                animation: jinja2 5s infinite ease-in-out;
+              }
+            }
+          }
+
+          @keyframes jinja {
+            0% {
+              transform: rotate(0deg);
+            }
+
+            25% {
+              transform: rotate(10deg);
+            }
+
+            50% {
+              transform: rotate(0deg);
+            }
+
+            75% {
+              transform: rotate(10deg);
+            }
+
+            100% {
+              transform: rotate(0deg);
+            }
+          }
+
+          @keyframes jinja2 {
+            0% {
+              transform: rotate(0deg) translateX(rem(20px));
+            }
+
+            25% {
+              transform: rotate(10deg) translateX(rem(20px));
+            }
+
+            50% {
+              transform: rotate(0deg) translateX(rem(20px));
+            }
+
+            75% {
+              transform: rotate(10deg) translateX(rem(20px));
+            }
+
+            100% {
+              transform: rotate(0deg) translateX(rem(20px));
+            }
+          }
+
+          &.swiper-slide-active {
+            opacity: 1 !important;
+            pointer-events: auto;
+          }
+        }
+      }
+
+      .char-prev,
+      .char-next {
+        position: absolute;
+        width: rem(150px);
+        height: rem(150px);
+        top: calc(50% + rem(100px));
+        transform: translateY(-50%);
+        background-size: contain;
+        background-position: center;
+
+        @include custom(1280px) {
+          width: rem(120px);
+          height: rem(120px);
+        }
+
+        @include mobile() {
+          width: rem(180px);
+          height: rem(180px);
+        }
+
+        @include mobile-mini() {
+          width: rem(130px);
+          height: rem(130px);
+        }
+      }
+
+      .char-next {
+        background-image: url('#{$path-image}/character/left-btn.png');
+        left: rem(-150px);
+        @include custom(1280px) {
+          left: rem(-130px);
+        }
+
+        @include mobile() {
+          left: rem(-50px);
+        }
+      }
+
+      .char-prev {
+        right: rem(-150px);
+        background-image: url('#{$path-image}/character/right-btn.png');
+
+        @include custom(1280px) {
+          right: rem(-130px);
+        }
+
+        @include mobile() {
+          right: rem(-50px);
+        }
+      }
+    }
+  }
+
+  &__info {
+    padding-top: rem(130px);
+    width: 53%;
+    padding-right: rem(30px);
+
+    @include custom(1500px) {
+      padding-top: rem(50px);
+    }
+
+    @include mobile() {
+      width: 100%;
+      text-align: center;
+      padding: 0 rem(30px) !important;
+    }
+
+    dl {
+      .name {
+        font-size: rem(77px);
+        margin-bottom: rem(45px);
+        background: #012f85;
+        color: transparent;
+        text-shadow: 3px 3px 0 rgba($color: #c5d5e6, $alpha: 0.2);
+        -webkit-background-clip: text;
+
+        @include custom(1320px) {
+          font-size: rem(57px);
+          margin-bottom: rem(25px);
+        }
+
+        @include mobile() {
+          font-size: rem(100px);
+        }
+
+        @include mobile-mini() {
+          font-size: rem(80px);
+        }
+      }
+
+      .info {
+        font-size: rem(25px);
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 800;
+        color: #4a4a4a;
+        line-height: 1.3;
+
+        @include mobile() {
+          font-size: rem(34px);
+        }
+      }
+    }
+  }
+
+  &__pagi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: rem(20px);
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: rem(-80px);
+
+    @include mobile() {
+      bottom: rem(-40px);
+    }
+    span {
+      cursor: pointer;
+      display: block;
+      background: rgba($color: #000000, $alpha: 0.2);
+      width: rem(20px);
+      height: rem(20px);
+      border-radius: 50%;
+      margin: 0 rem(18px);
+
+      &.swiper-pagination-bullet-active {
+        background: rgba($color: #000000, $alpha: 1);
+      }
+    }
+  }
+}
+
+//일본어
+.ja {
+  .character {
+    &__info {
+      padding-right: rem(40px);
+    }
+  }
+}
+
+.ar {
+  .character {
+    &__info {
+      padding-right: rem(0);
+      padding-left: rem(30px);
+      dl {
+        dt.name {
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}

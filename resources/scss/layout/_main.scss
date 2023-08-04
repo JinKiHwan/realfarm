@@ -1,0 +1,147 @@
+@use '../helpers/' as *;
+
+.main-visual {
+  width: 100%;
+  aspect-ratio: 2/1;
+
+  @include mobile() {
+    aspect-ratio: 1024/1300;
+  }
+
+  .inner {
+    align-items: flex-end;
+
+    @include mobile() {
+      align-items: center;
+    }
+  }
+
+  &__content {
+    width: 50.5%;
+    aspect-ratio: 11/7.5;
+
+    @include mobile() {
+      width: 100%;
+      aspect-ratio: unset;
+    }
+
+    @include mobile-mini {
+      margin-top: rem(150px);
+    }
+
+    h2 {
+      width: 64%;
+      margin: 0 auto;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+
+      @include mobile() {
+        transform: translate3d(0, 0, 0) scale(0.6);
+      }
+    }
+
+    p {
+      text-align: center;
+      aspect-ratio: 7/2;
+      padding-bottom: rem(20px);
+      @include flex();
+      background: url('#{$path-image}/main-visual/Slogan-box.png') no-repeat center center/contain;
+      font-size: rem(55px);
+      color: #532709;
+      text-shadow: 3px 3px 0px rgba($color: #000000, $alpha: 0.2);
+      margin: rem(50px) 0 0;
+
+      @include desktop() {
+        margin-top: 0;
+        font-size: rem(50px);
+      }
+
+      @include custom(1260px) {
+        font-size: rem(40px);
+      }
+
+      @include mobile() {
+        font-size: rem(64px);
+      }
+
+      @include custom(650px) {
+        font-size: rem(54px);
+      }
+
+      @include custom(550px) {
+        font-size: rem(44px);
+      }
+
+      @include mobile-mini() {
+        font-size: rem(50px);
+      }
+
+      @include custom(360px) {
+        font-size: rem(45px);
+      }
+    }
+
+    figure {
+      margin: rem(50px) auto;
+
+      @include mobile {
+        width: 90%;
+        transform: translate3d(0, 0, 0) scale(0.6);
+      }
+
+      img {
+        margin: 0 auto;
+      }
+    }
+
+    .btn {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      max-width: 700px;
+      margin: 0 auto;
+      li {
+        margin: 0 rem(15px);
+
+        @include mobile-mini() {
+          width: 40%;
+        }
+
+        img {
+          @include mobile-mini() {
+            height: 100%;
+          }
+        }
+
+        &:last-child {
+          width: 100%;
+          aspect-ratio: 25/4;
+          font-size: rem(45px);
+          @include flex();
+          text-align: center;
+          color: #fff;
+          background: url('#{$path-image}/main-visual/other-btn-bg.png') no-repeat center center/ contain;
+          margin-top: rem(50px);
+          padding-bottom: rem(15px);
+
+          span {
+            font-family: 'Paytone One', sans-serif;
+          }
+
+          a {
+            @include flex();
+            width: 100%;
+            height: 100%;
+            padding-top: rem(15px);
+            text-shadow: 1px 3px 3px rgba($color: #000000, $alpha: 0.3);
+          }
+        }
+      }
+    }
+  }
+}

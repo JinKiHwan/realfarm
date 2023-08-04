@@ -1,0 +1,212 @@
+@use '../helpers/' as *;
+
+.header {
+  width: 100%;
+  z-index: $z-header;
+  transition: 0.4s;
+  @include position($p: fixed);
+  // &.-active {
+  //     background-color: $c-white;
+  //     box-shadow: 0px 2px 7px rgba(65, 63, 61, 0.31);
+  // }
+
+  &__inner {
+    padding: rem(30px) rem(40px) 0;
+  }
+
+  &__content {
+    position: relative;
+    @include flex($a: flex-start, $j: between);
+
+    h1 {
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      width: rem(250px);
+      height: 60px;
+      background: url('#{$path-image}/header/logo.png') no-repeat center left/contain;
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__util {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    min-height: rem(60px);
+    height: auto;
+    box-sizing: border-box;
+
+    @include mobile() {
+      display: none;
+    }
+
+    > ul {
+      min-width: rem(240px);
+      background-image: url('#{$path-image}/header/lang-bg.png');
+      background-color: #d68326;
+      border-radius: 30px;
+      border: 2px solid #67421a;
+      padding: 0 rem(7px);
+      box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: 1);
+      @include flex();
+
+      > li {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        > a {
+          padding: rem(17px) rem(18px);
+          font-size: rem(30px);
+          display: flex;
+          align-items: center;
+          background: #50301b;
+          color: transparent;
+          text-shadow: 3px 3px 0 rgba($color: #d2802b, $alpha: 0.2);
+          -webkit-background-clip: text;
+
+          > i {
+            margin-left: rem(10px);
+          }
+        }
+
+        .depth2 {
+          display: none;
+          background: #4f200c;
+          width: 100%;
+          margin-bottom: rem(7px);
+          border-radius: 30px;
+          position: relative;
+          z-index: 0;
+          overflow: hidden;
+
+          &::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            position: absolute;
+            z-index: -1;
+            left: rem(5px);
+            top: rem(5px);
+            background: #602d16;
+          }
+
+          li {
+            color: #f9e5d0;
+            margin: rem(15px) 0;
+
+            a {
+              padding: 0 rem(18px);
+              font-size: rem(30px);
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .playnow {
+      width: rem(300px);
+      max-height: 60px;
+      @include flex();
+      position: relative;
+      z-index: 1;
+
+      a {
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        @include flex();
+        font-size: rem(30px);
+      }
+
+      figure {
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        top: calc(50% + 3px);
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: 110%;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &__m-menu {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    display: none;
+    width: rem(130px);
+    height: rem(130px);
+
+    @include mobile() {
+      display: block;
+    }
+
+    @include mobile-mini() {
+      width: rem(110px);
+      height: rem(110px);
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: url('#{$path-image}/header/m-menu.png') no-repeat center center / contain;
+    }
+
+    &.on {
+      a {
+        background-image: url('#{$path-image}/header/m-menu-close.png');
+      }
+    }
+  }
+
+  &.on {
+    h1 {
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+  }
+}
+
+.ar {
+  .header {
+    &__content {
+      h1 {
+        left: auto;
+        right: 0;
+      }
+    }
+
+    &__m-menu {
+      transform: rotateY(180deg);
+    }
+
+    &__m-menu,
+    &__util {
+      right: auto;
+      left: 0;
+    }
+  }
+}
